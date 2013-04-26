@@ -1,0 +1,24 @@
+{
+  "name": "linpaas-formserver",
+  "version": "0.0.0",
+  "description": "LinPaaS Form Server",
+  "author": "Christophe Hamerling <chamerling@linagora.com>",
+  "homepage": "http://github.com/linagora/linpaas-formserver",
+  "keywords": [
+    "node"
+  ],
+  "licenses": [{
+    "type": "MIT",
+    "url": "http://mths.be/mit"
+  }],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/linagora/linpaas-formserver.git"
+  },
+  "dependencies": {
+    "request": "latest",
+    "express": "latest",
+    "mongoose": "3.6.8",
+    "mongoose-lifecycle": "1.0.0"
+  }
+}
