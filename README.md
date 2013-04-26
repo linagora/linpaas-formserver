@@ -50,3 +50,10 @@ With the JSON as body:
     }
 
 Returns HTTP status 201 if created.
+
+## Sample
+
+### Create a new form
+
+    node samples/post.js
+
