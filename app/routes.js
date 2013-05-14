@@ -56,4 +56,13 @@ module.exports = function(app) {
 		});
 	});
 
+	// delete a form
+	app.del('/forms/:id', function(req, res) {
+		Form.findByIdAndRemove(req.params.id, function(err, form) {
+      if (err) return res.send(500, err);
+      if (!form) return res.json(404, {error : 'Can not find form with ID:' + req.params.id});
+      res.send(200);
+    });
+	});
+
 }
