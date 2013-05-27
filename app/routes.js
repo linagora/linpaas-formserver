@@ -37,7 +37,7 @@ module.exports = function(app) {
   // get a form
   app.get('/forms/:id', function(req, res) {
     Form
-      .findOne({ _id : req.params.id }, function(err, form) {
+      .findById(req.params.id, function(err, form) {
         if (err) return res.send(500, err);
         if (!form) return res.json(404, {error : 'Can not find form with ID:' + req.params.id});
         res.json(form);
