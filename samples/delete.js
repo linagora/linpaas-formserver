@@ -24,11 +24,10 @@ rl.question("Input a form id :", function(answer) {
 		 if (err) {
 		   console.log(err)
 		 } else {
-		   console.log(res.statusCode)
 		   if (res.statusCode == 200) {
-		     console.log('Form Deleted')
+		     console.log('Form Deleted');
 		   } else {
-		     console.log('Bad return code')
+		     console.log('Bad return code : %s', res.statusCode);
 		   }
 		 }
 	  }
