@@ -1,0 +1,14 @@
+div.result_div {
+	width: 800px;
+	height: 250px;
+	float:bottom-left;
+	padding: 5px;
+	margin: 5px;
+	background-color: #EEEEEE;
+	border: 3px solid red;
+	overflow:scroll;
+}
+
+input.writable {
+	-webkit-user-select: auto !important;
+}

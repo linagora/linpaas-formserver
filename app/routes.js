@@ -46,19 +46,32 @@ module.exports = function(app) {
 
   // create
 	app.post('/forms', function(req, res) {
-		var form = new Form(req.body);
-		form.save(function(err, saved) {
-		 	if (err) {
-			 	res.send(err);
-		 	} else {
-			 	res.json(201, saved);
-		 	}
+
+		//TODO remove trace
+		console.log(req.body);
+
+		Form.create(req.body, function(err, savedForm) {
+			if (err) {
+				res.send(500, err);
+			}
+			else {
+				res.json(201, savedForm);
+			}
 		});
 	});
 
 	// delete a form
 	app.del('/forms/:id', function(req, res) {
 		Form.findByIdAndRemove(req.params.id, function(err, form) {
+      if (err) return res.send(500, err);
+      if (!form) return res.json(404, {error : 'Can not find form with ID:' + req.params.id});
+      res.send(200);
+    });
+	});
+
+	// update a form
+	app.post('/forms/:id', function(req, res) {
+		Form.findByIdAndUpdate(req.params.id, req.body,function(err, form) {
       if (err) return res.send(500, err);
       if (!form) return res.json(404, {error : 'Can not find form with ID:' + req.params.id});
       res.send(200);
