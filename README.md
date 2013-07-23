@@ -51,9 +51,21 @@ With the JSON as body:
 
 Returns HTTP status 201 if created.
 
+### Delete a form
+
+    HTTP DELETE /forms/:id
+
+Returns HTTP status 200 if a form with this id exists and has been deleted correctly.
+
 ## Sample
 
 ### Create a new form
 
     node samples/post.js
+
+### Delete a form
+
+    node samples/delete.js
+
+Prompts for the id of the form you want to delete and then performs the request.
 
