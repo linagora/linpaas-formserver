@@ -46,10 +46,6 @@ module.exports = function(app) {
 
   // create
 	app.post('/forms', function(req, res) {
-
-		//TODO remove trace
-		console.log(req.body);
-
 		Form.create(req.body, function(err, savedForm) {
 			if (err) {
 				res.send(500, err);
