@@ -37,22 +37,41 @@ module.exports = function(app) {
   // get a form
   app.get('/forms/:id', function(req, res) {
     Form
-      .findOne({ _id : req.params.id }, function(err, form) {
-        if (err) return res.send(err);
+      .findById(req.params.id, function(err, form) {
+        if (err) return res.send(500, err);
         if (!form) return res.json(404, {error : 'Can not find form with ID:' + req.params.id});
         res.json(form);
       });
   });
 
   // create
-  app.post('/forms', function(req, res) {
-    var form = new Form(req.body);
-    form.save(function(err, saved) {
-      if (err) {
-        res.send(err);
-      } else {
-        res.json(201, saved);
-      }
-    })
-  });
+	app.post('/forms', function(req, res) {
+		Form.create(req.body, function(err, savedForm) {
+			if (err) {
+				res.send(500, err);
+			}
+			else {
+				res.json(201, savedForm);
+			}
+		});
+	});
+
+	// delete a form
+	app.del('/forms/:id', function(req, res) {
+		Form.findByIdAndRemove(req.params.id, function(err, form) {
+      if (err) return res.send(500, err);
+      if (!form) return res.json(404, {error : 'Can not find form with ID:' + req.params.id});
+      res.send(200);
+    });
+	});
+
+	// update a form
+	app.post('/forms/:id', function(req, res) {
+		Form.findByIdAndUpdate(req.params.id, req.body,function(err, form) {
+      if (err) return res.send(500, err);
+      if (!form) return res.json(404, {error : 'Can not find form with ID:' + req.params.id});
+      res.send(200);
+    });
+	});
+
 }

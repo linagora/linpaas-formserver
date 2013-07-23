@@ -26,8 +26,6 @@ mongoose.connect(conf.mongo.uri, function(err) {
       require(models_path+'/'+file)
     });
 
-    require('./app/routes')(app);
-
     // express app should be configured somewhere...
     app.configure('all', function() {
       app.set('port', conf.port);
@@ -35,6 +33,8 @@ mongoose.connect(conf.mongo.uri, function(err) {
       app.use(express.bodyParser());
       app.use(express.static(path.join(__dirname, 'public')));
     });
+
+	require('./app/routes')(app);
 
     app.listen(app.get('port'), function(err) {
       if (err) {
