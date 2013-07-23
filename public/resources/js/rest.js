@@ -1,23 +1,16 @@
 var currentFormModel;
 
 function requestFormCreation() {
-//	var form = {
-//		name : $('#input').val(),
-//		model : {
-//			foo: 'bar',
-//			bar: 'baz'
-//		}
-//	}
-
 	var formName = currentFormModel[0].name;
-	var formModel = currentFormModel;
+	var formModel = getObjectFormArray(currentFormModel);
 
 	var form = {
 		name : formName,
-		model : {} //should be formModel but does not work
-	}
+		//model : {} //should be formModel but does not work
+		model : formModel
+	};
 
-	console.log(JSON.stringify(form));
+	console.log('SENT : '+JSON.stringify(form));
 
 	$.ajax({
 		type: "POST",
@@ -48,7 +41,27 @@ function requestFormFind() {
 	});
 }
 
+function requestFormLoad() {
+	$.getJSON("/forms/"+$('#input').val(), function (data){
+		//$('#result').text(JSON.stringify(data));
+
+		//TODO currentFormModel = getArrayFromObject(data);
+
+		PubSub.trigger('loadForm');
+	});
+}
+
 function saveCurrentFormModel(model) {
 	console.log("MODEL : "+JSON.stringify(model));
 	currentFormModel = model;
 }
+
+function getObjectFormArray(array) {
+	var obj = new Object();
+	for(i=0; i<array.length; i++) {
+		obj['field'+i] = array[i];
+	}
+	return obj;
+}
+
+//function getArrayFromObject

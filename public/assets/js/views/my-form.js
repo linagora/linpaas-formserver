@@ -21,6 +21,9 @@ define([
       this.collection.on("remove", this.saveFormModel, this);
 			this.collection.on("change", this.saveFormModel, this);
 
+			//NEW : define the custom "load" event to load a form
+      PubSub.on("loadForm", this.loadForm);
+
       PubSub.on("mySnippetDrag", this.handleSnippetDrag, this);
       PubSub.on("tempMove", this.handleTempMove, this);
       PubSub.on("tempDrop", this.handleTempDrop, this);
@@ -47,6 +50,11 @@ define([
 		, saveFormModel: function() {
 			var modelToSave = this.collection.getFormModel([]);
 			saveCurrentFormModel(modelToSave);
+		}
+
+		//NEW : 
+		, loadForm: function() {
+			console.log('loadFormEvent');
 		}
 
     , getBottomAbove: function(eventY){
