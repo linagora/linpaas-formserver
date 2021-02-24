@@ -1,3 +1,5 @@
+![Archived](https://img.shields.io/badge/Current_Status-archived-blue?style=flat)
+
 # LinPaaS Form Server
 
 Node.js based form server used to store and retrieve JSON serialized HTML forms.
